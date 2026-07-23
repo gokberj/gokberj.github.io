@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mustafa Gökberk Tektek</title>
+<link rel="stylesheet" href="styles.css?v=public2">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="site-header">
+    <h1>Mustafa Gökberk Tektek</h1>
+    <p class="subtitle">Designer, Communications Professional, Urbanist</p>
+  </header>
+
+  <section class="cms" aria-label="Add experience" hidden>
+    <form id="experience-form" class="cms-form">
+      <div class="field-row">
+        <label class="field grow">
+          <span>Title</span>
+          <input type="text" id="f-title" required placeholder="e.g. Dilucidar">
+        </label>
+        <label class="field grow">
+          <span>Role</span>
+          <input type="text" id="f-role" placeholder="e.g. Creative Strategist">
+        </label>
+      </div>
+
+      <div class="field-row">
+        <label class="field" id="f-start-wrap">
+          <span>Start</span>
+          <input type="month" id="f-start" required>
+        </label>
+        <label class="field" id="f-end-wrap">
+          <span>End</span>
+          <input type="month" id="f-end">
+        </label>
+        <label class="field checkbox" id="f-ongoing-wrap">
+          <input type="checkbox" id="f-ongoing">
+          <span>Ongoing</span>
+        </label>
+        <label class="field checkbox">
+          <input type="checkbox" id="f-highlight">
+          <span>One-day highlight</span>
+        </label>
+      </div>
+
+      <div class="field-row">
+        <label class="field">
+          <span>Color</span>
+          <span class="color-control">
+            <span id="color-swatch" class="color-swatch"></span>
+            <input type="text" id="f-color" value="#5b5b5b" maxlength="7"
+                   spellcheck="false" autocapitalize="off" placeholder="#5b5b5b">
+          </span>
+        </label>
+        <div class="field">
+          <span>Icon</span>
+          <div class="icon-control">
+            <img id="icon-preview" class="icon-preview" alt="" hidden>
+            <label class="icon-pick">
+              <input type="file" id="f-icon" accept="image/png,image/jpeg,image/svg+xml" hidden>
+              <span id="icon-pick-label">Choose…</span>
+            </label>
+            <button type="button" id="icon-clear" class="icon-clear" hidden>Remove</button>
+          </div>
+        </div>
+        <label class="field grow">
+          <span>Note</span>
+          <input type="text" id="f-note" placeholder="optional">
+        </label>
+      </div>
+
+      <div class="field-row">
+        <label class="field grow">
+          <span>URL</span>
+          <input type="text" id="f-url" inputmode="url" spellcheck="false"
+                 autocapitalize="off" placeholder="https://… (optional)">
+        </label>
+        <label class="field grow">
+          <span>Related to</span>
+          <select id="f-related">
+            <option value="">— None —</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="field-row">
+        <label class="field grow">
+          <span>Tags</span>
+          <input type="text" id="f-tags" spellcheck="false"
+                 placeholder="urbanism, design (comma separated)">
+        </label>
+        <label class="field grow">
+          <span>Category</span>
+          <select id="f-section">
+            <option value="">— Uncategorized —</option>
+            <option value="Work Experience and Formal Education">Work Experience and Formal Education</option>
+            <option value="Volunteering">Volunteering</option>
+            <option value="Projects">Projects</option>
+            <option value="Memberships &amp; Learning">Memberships &amp; Learning</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Lane</span>
+          <input type="number" id="f-lane" min="1" step="1" placeholder="Auto">
+        </label>
+      </div>
+
+      <div class="field-row">
+        <div class="field grow">
+          <span>Photos</span>
+          <div class="file-attach">
+            <label class="file-attach-btn">
+              <input type="file" id="f-photos" accept="image/*" multiple hidden>
+              <span id="photos-pick-label">Add photos…</span>
+            </label>
+            <div id="photos-preview" class="photos-preview"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field grow">
+          <span>Documents</span>
+          <div class="file-attach">
+            <label class="file-attach-btn">
+              <input type="file" id="f-docs" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.zip" multiple hidden>
+              <span id="docs-pick-label">Add documents…</span>
+            </label>
+            <div id="docs-preview" class="docs-preview"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field grow">
+          <span>Details</span>
+          <div class="rte">
+            <div class="rte-toolbar" role="toolbar" aria-label="Formatting">
+              <button type="button" class="rte-btn" data-cmd="bold" title="Bold"><b>B</b></button>
+              <button type="button" class="rte-btn" data-cmd="italic" title="Italic"><i>I</i></button>
+              <button type="button" class="rte-btn" data-cmd="insertUnorderedList" title="Bulleted list">List</button>
+              <button type="button" class="rte-btn" data-cmd="createLink" title="Insert link">Link</button>
+              <button type="button" class="rte-btn" data-cmd="removeFormat" title="Clear formatting">Clear</button>
+            </div>
+            <div id="f-details" class="rte-editor" contenteditable="true"
+                 data-placeholder="Add details of this experience…"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-row actions">
+        <button type="submit" id="add-btn">Add experience</button>
+        <button type="button" id="cancel-btn" class="ghost" hidden>Cancel edit</button>
+        <button type="button" id="export-btn" class="ghost">Export JSON</button>
+        <label class="ghost btn-like" id="import-label">
+          Import JSON
+          <input type="file" id="import-file" accept="application/json,.json" hidden>
+        </label>
+        <button type="button" id="restore-btn" class="ghost" hidden>Restore backup</button>
+        <button type="button" id="reset-btn" class="ghost">Reset to defaults</button>
+        <span id="form-status" class="form-status" role="status"></span>
+      </div>
+    </form>
+
+  </section>
+
+  <main class="timeline-wrap">
+    <div class="timeline" id="timeline"></div>
+    <aside class="detail-box" id="detail-box">
+      <div class="accordion" id="accordion"></div>
+    </aside>
+  </main>
+
+</div>
+
+
+<script src="timeline.js?v=public2"></script>
+<script src="app.js?v=public2"></script>
+</body>
+</html>
