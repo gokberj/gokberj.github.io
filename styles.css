@@ -51,7 +51,8 @@ body {
   font-family: Georgia, "Times New Roman", serif;
   font-weight: 400;
   font-size: 34px;
-  margin: 0 0 8px;
+  margin: 0 0 2px;
+  line-height: 1.08;
   letter-spacing: 0.01em;
 }
 
@@ -390,7 +391,7 @@ button.ghost,
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--ink-soft);
-  padding: 38px 8px 8px;
+  padding: 38px 8px 4px;
   border-bottom: 1px solid var(--ink-soft);
   margin-bottom: 3px;
 }
