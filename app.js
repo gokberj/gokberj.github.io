@@ -287,11 +287,6 @@
     header.className = "acc-header";
     header.setAttribute("aria-expanded", isOpen ? "true" : "false");
 
-    var swatch = document.createElement("span");
-    swatch.className = "acc-swatch" + (exp.highlight ? " is-dot" : "");
-    swatch.style.backgroundColor = displayColor(exp);
-    header.appendChild(swatch);
-
     if (exp.icon) {
       var iconEl = document.createElement("img");
       iconEl.className = "acc-icon";
