@@ -3,7 +3,7 @@
 var TimelineData = (function () {
   "use strict";
 
-  var STORAGE_KEY = "timeline.experiences.v2";
+  var STORAGE_KEY = "timeline.experiences.v3";
   var BACKUP_KEY = "timeline.experiences.backup";
 
   var _fileData = null; // populated by init() from data.json
