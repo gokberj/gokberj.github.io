@@ -391,13 +391,13 @@ button.ghost,
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--ink-soft);
-  padding: 38px 8px 4px;
+  padding: 48px 8px 4px;
   border-bottom: 1px solid var(--ink-soft);
   margin-bottom: 3px;
 }
 
 .acc-cat:first-child {
-  padding-top: 10px;
+  padding-top: 18px;
 }
 
 body.admin-page .acc-cat:hover {
@@ -961,12 +961,12 @@ body.admin-page .acc-header[aria-expanded="true"] {
   }
 
   .acc-cat {
-    padding: 22px 4px 4px;
+    padding: 34px 4px 4px;
     font-size: 11px;
   }
 
   .acc-cat:first-child {
-    padding-top: 0;
+    padding-top: 10px;
   }
 
   .acc-header {
