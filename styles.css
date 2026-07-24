@@ -909,7 +909,7 @@ body.admin-page .acc-header[aria-expanded="true"] {
 
   .page {
     max-width: none;
-    padding: 44px 24px 76px;
+    padding: 44px 12px 76px;
   }
 
   .site-header {
