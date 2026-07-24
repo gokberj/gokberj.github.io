@@ -909,7 +909,7 @@ body.admin-page .acc-header[aria-expanded="true"] {
 
   .page {
     max-width: none;
-    padding: 56px 32px 88px;
+    padding: 44px 24px 76px;
   }
 
   .site-header {
@@ -961,12 +961,12 @@ body.admin-page .acc-header[aria-expanded="true"] {
   }
 
   .acc-cat {
-    padding: 34px 4px 4px;
+    padding: 48px 4px 4px;
     font-size: 11px;
   }
 
   .acc-cat:first-child {
-    padding-top: 10px;
+    padding-top: 18px;
   }
 
   .acc-header {
