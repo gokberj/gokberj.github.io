@@ -901,3 +901,101 @@ body.admin-page .acc-header[aria-expanded="true"] {
   transform: none;
   transition: none;
 }
+
+@media (max-width: 720px) {
+  body {
+    font-size: 15px;
+  }
+
+  .page {
+    max-width: none;
+    padding: 34px 16px 64px;
+  }
+
+  .site-header {
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .site-header h1 {
+    font-size: 29px;
+    line-height: 1.05;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  .cms {
+    max-width: 100%;
+    padding: 14px;
+    margin-bottom: 32px;
+  }
+
+  .timeline-wrap {
+    display: block;
+  }
+
+  .timeline {
+    display: none;
+  }
+
+  .detail-box {
+    max-width: none;
+    width: 100%;
+  }
+
+  .accordion {
+    display: block;
+    max-width: none;
+    width: 100%;
+  }
+
+  .acc-pane + .acc-pane {
+    margin-top: 14px;
+  }
+
+  .acc-col + .acc-col {
+    margin-top: 14px;
+  }
+
+  .acc-cat {
+    padding: 22px 4px 4px;
+    font-size: 11px;
+  }
+
+  .acc-cat:first-child {
+    padding-top: 0;
+  }
+
+  .acc-header {
+    gap: 10px;
+    padding: 10px 4px;
+    align-items: flex-start;
+  }
+
+  .acc-icon {
+    width: 28px;
+    height: 28px;
+    margin-top: 1px;
+  }
+
+  .acc-title,
+  .acc-meta {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+
+  .acc-title {
+    font-size: 14px;
+    line-height: 1.25;
+  }
+
+  .acc-meta {
+    font-size: 12px;
+    line-height: 1.3;
+    margin-top: 1px;
+  }
+}
