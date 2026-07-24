@@ -979,6 +979,7 @@ body.admin-page .acc-header[aria-expanded="true"] {
     width: 28px;
     height: 28px;
     margin-top: 1px;
+    transform: translateY(-3px);
   }
 
   .acc-main {
