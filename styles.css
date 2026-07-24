@@ -909,7 +909,7 @@ body.admin-page .acc-header[aria-expanded="true"] {
 
   .page {
     max-width: none;
-    padding: 44px 12px 76px;
+    padding: 44px 24px 76px;
   }
 
   .site-header {
@@ -972,7 +972,7 @@ body.admin-page .acc-header[aria-expanded="true"] {
   .acc-header {
     gap: 10px;
     padding: 10px 4px;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .acc-icon {
@@ -982,7 +982,7 @@ body.admin-page .acc-header[aria-expanded="true"] {
   }
 
   .acc-main {
-    transform: translateY(-3px);
+    transform: none;
   }
 
   .acc-title,
