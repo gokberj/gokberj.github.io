@@ -5,6 +5,7 @@
   var form = document.getElementById("experience-form");
   var addBtn = document.getElementById("add-btn");
   var cancelBtn = document.getElementById("cancel-btn");
+  var deleteBtn = document.getElementById("delete-btn");
   var exportBtn = document.getElementById("export-btn");
   var importFile = document.getElementById("import-file");
   var restoreBtn = document.getElementById("restore-btn");
@@ -25,6 +26,7 @@
   var fTags = document.getElementById("f-tags");
   var fSection = document.getElementById("f-section");
   var fLane = document.getElementById("f-lane");
+  var fHidden = document.getElementById("f-hidden");
   var fDetails = document.getElementById("f-details");
   var rteToolbar = document.querySelector(".rte-toolbar");
 
@@ -93,14 +95,18 @@
   function renderAll() {
     CATEGORY_COLUMNS = getCategoryColumns();
     refreshSectionDropdown();
-    var experiences = TimelineData.allExperiences();
+    var allExperiences = TimelineData.allExperiences();
+    var experiences = IS_ADMIN ? allExperiences : allExperiences.filter(function (exp) {
+      return !exp.hidden;
+    });
+    renderAccordion(experiences);
     Timeline.render(timelineEl, experiences, {
+      targetHeight: timelineTargetHeight(),
       onEnter: onTimelineEnter,
       onLeave: onTimelineLeave,
       onSelect: function (exp) { expandItem(exp.id, true); }
     });
     refreshRelatedOptions(experiences);
-    renderAccordion(experiences);
   }
 
   function refreshSectionDropdown() {
@@ -195,6 +201,23 @@
     });
   }
 
+  function timelineTargetHeight() {
+    var target = null;
+    var items = accordionEl.querySelectorAll(".acc-item");
+    items.forEach(function (item) {
+      var title = item.querySelector(".acc-title");
+      var meta = item.querySelector(".acc-meta");
+      var text = [title ? title.textContent : "", meta ? meta.textContent : ""].join(" ");
+      if (text.indexOf("Teyit FACT-ORY") !== -1) {
+        target = item;
+      }
+    });
+    var fallback = accordionEl.querySelector(".acc-pane");
+    var stretchTo = target || fallback;
+    if (!stretchTo || !timelineEl) return null;
+    return stretchTo.getBoundingClientRect().bottom - timelineEl.getBoundingClientRect().top;
+  }
+
   /* ---------- detail box ---------- */
 
   function renderAccordion(experiences) {
@@ -278,7 +301,7 @@
     var isOpen = exp.id === openId;
 
     var li = document.createElement("li");
-    li.className = "acc-item";
+    li.className = "acc-item" + (exp.hidden ? " is-hidden" : "");
     li.dataset.id = exp.id;
 
     // ----- header (styled to match the editing-pane rows) -----
@@ -307,11 +330,9 @@
     main.appendChild(metaEl);
     header.appendChild(main);
 
-    if (IS_ADMIN) {
-      header.addEventListener("click", function () {
-        toggleItem(exp.id);
-      });
-    }
+    header.addEventListener("click", function () {
+      toggleItem(exp.id);
+    });
     header.addEventListener("mouseenter", function () {
       highlightTimelineItem(exp.id);
     });
@@ -924,6 +945,7 @@
     fRelated.value = "";
     fTags.value = "";
     fLane.value = "";
+    if (fHidden) fHidden.checked = false;
     fSection.value = "";
     fDetails.innerHTML = "";
     fIcon.value = "";
@@ -963,6 +985,7 @@
     fTags.value = (exp.tags || []).join(", ");
     fSection.value = exp.section || "";
     fLane.value = (typeof exp.lane === "number" && exp.lane >= 0) ? (exp.lane + 1) : "";
+    if (fHidden) fHidden.checked = !!exp.hidden;
     fDetails.innerHTML = exp.details ? sanitizeHtml(exp.details) : "";
     fIcon.value = "";
     setIcon(exp.icon || "");
@@ -974,6 +997,7 @@
 
     addBtn.textContent = "Save changes";
     cancelBtn.hidden = false;
+    if (deleteBtn) deleteBtn.hidden = false;
 
     renderAll();
     form.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -984,6 +1008,7 @@
     editingId = null;
     addBtn.textContent = "Add experience";
     cancelBtn.hidden = true;
+    if (deleteBtn) deleteBtn.hidden = true;
     clearForm();
   }
 
@@ -991,6 +1016,28 @@
     exitEditMode();
     renderAll();
   });
+
+  if (deleteBtn) {
+    deleteBtn.addEventListener("click", function () {
+      if (!editingId) return;
+      var exp = findExperience(editingId);
+      var label = exp ? primaryLine(exp) : "this experience";
+      if (!window.confirm("Delete “" + label + "”? This removes it from the editor data.")) {
+        return;
+      }
+      TimelineData.deleteExperience(editingId);
+      TimelineData.allExperiences().forEach(function (item) {
+        if (item.relatedTo === editingId) {
+          item.relatedTo = "";
+          TimelineData.updateExperience(item);
+        }
+      });
+      openId = null;
+      exitEditMode();
+      renderAll();
+      setStatus("Deleted.");
+    });
+  }
 
   /* ---------- submit ---------- */
 
@@ -1052,6 +1099,7 @@
       ongoing: !isHighlight && isOngoing,
       highlight: isHighlight,
       color: color,
+      hidden: !!(fHidden && fHidden.checked),
       note: fNote.value.trim(),
       url: url,
       relatedTo: fRelated.value || "",

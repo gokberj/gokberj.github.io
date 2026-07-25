@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mustafa Gökberk Tektek</title>
-<link rel="stylesheet" href="styles.css?v=public13">
+<link rel="stylesheet" href="styles.css?v=public14">
 </head>
 <body>
 
@@ -107,6 +107,10 @@
           <span>Lane</span>
           <input type="number" id="f-lane" min="1" step="1" placeholder="Auto">
         </label>
+        <label class="field checkbox">
+          <input type="checkbox" id="f-hidden">
+          <span>Hidden</span>
+        </label>
       </div>
 
       <div class="field-row">
@@ -155,6 +159,7 @@
       <div class="field-row actions">
         <button type="submit" id="add-btn">Add experience</button>
         <button type="button" id="cancel-btn" class="ghost" hidden>Cancel edit</button>
+        <button type="button" id="delete-btn" class="ghost danger" hidden>Delete</button>
         <button type="button" id="export-btn" class="ghost">Export JSON</button>
         <label class="ghost btn-like" id="import-label">
           Import JSON
@@ -178,7 +183,7 @@
 </div>
 
 
-<script src="timeline.js?v=public13"></script>
-<script src="app.js?v=public13"></script>
+<script src="timeline.js?v=public14"></script>
+<script src="app.js?v=public14"></script>
 </body>
 </html>

@@ -299,10 +299,16 @@ var Timeline = (function () {
 
     var laneCount = assignLanes(prepared);
     var lanesWidth = laneCount * LANE_WIDTH + (laneCount - 1) * LANE_GAP;
-    var totalHeight = (nowAbs - absMonths(minYear, 1)) * PX_PER_MONTH + TOP_PADDING + BOTTOM_PADDING;
+    var monthSpan = nowAbs - absMonths(minYear, 1);
+    var targetHeight = callbacks && callbacks.targetHeight ? callbacks.targetHeight : 0;
+    var pxPerMonth = PX_PER_MONTH;
+    if (targetHeight > 0 && monthSpan > 0) {
+      pxPerMonth = Math.max(PX_PER_MONTH, (targetHeight - TOP_PADDING) / monthSpan);
+    }
+    var totalHeight = monthSpan * pxPerMonth + TOP_PADDING + BOTTOM_PADDING;
 
     function yFor(abs) {
-      return (nowAbs - abs) * PX_PER_MONTH + TOP_PADDING;
+      return (nowAbs - abs) * pxPerMonth + TOP_PADDING;
     }
 
     var timelineEl = document.createElement("div");
@@ -315,7 +321,7 @@ var Timeline = (function () {
     for (var y = maxYear; y >= minYear; y--) {
       var markerAbs = absMonths(y, 1);
       var markerY = yFor(markerAbs);
-      if (markerY < TOP_PADDING - 1 || markerY > totalHeight - BOTTOM_PADDING + 20) continue;
+      if (markerY < TOP_PADDING - 1 || markerY > totalHeight + 1) continue;
 
       var marker = document.createElement("div");
       marker.className = "year-marker";
