@@ -333,6 +333,9 @@ button.ghost,
   justify-content: center;
   align-items: flex-start;
   gap: 52px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 .timeline {
@@ -344,8 +347,8 @@ button.ghost,
 
 .detail-box {
   align-self: flex-start;
-  flex: 1 1 1280px;
-  max-width: 1280px;
+  flex: 0 1 1040px;
+  max-width: 1040px;
   min-width: 0;
 }
 
