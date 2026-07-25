@@ -553,7 +553,7 @@ body.admin-page .acc-header[aria-expanded="true"] {
 }
 
 .acc-tags {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   gap: 6px;
   margin-bottom: 10px;
